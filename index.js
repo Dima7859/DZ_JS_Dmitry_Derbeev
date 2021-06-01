@@ -1,91 +1,189 @@
-//________________exercise1__________________
+//_____________#1___________
 
 
-const promFunXz = (sec) => {
-    const randNumb = Math.floor(Math.random() * 11);
-    console.log(randNumb);
+// const str = 'КaКаЖдЫй ОхОтНиК';
 
-    const promRand = new Promise( (res, rej)=> {
-        setTimeout(() => {
-            if (randNumb % 2 == 0) {
-                res(randNumb)
-            } else rej()
-        },sec);
-    })
+// function revReg(var1) {
+//     const arr = var1.split(' ');
+//     const finishArr = [];
 
+//     arr.map( item => {
+//         const arrInterim = item.split('');
+//         const arrRam = [];
 
-    promRand
-        .then( res => console.log(`рандомное число ${res}`))
-        .catch( () => alert('нечётное'))
+//         arrInterim.map( item => {
+//             if (item === item.toUpperCase()) {
+//                 item = item.toLowerCase();
+//                 arrRam.push(item);
+//             } else {
+//                 item = item.toUpperCase();
+//                 arrRam.push(item);
+//             };
+//         });
 
+//         item = arrRam.join('');
+//         finishArr.push(item);
+//     })
 
-};
+//     console.log(finishArr);
+    
+// };
 
-promFunXz(1000);
-
-
-//________________exercise2__________________
-
-
-// const startProm = () => new Promise( res => {
-//         console.log('startProm');
-//         res()
-// });
-
-// const oneProm = () => new Promise( res => {
-//     setTimeout(() => {
-//         console.log('oneProm');
-//         res()
-//     },5000);
-// });
-
-// const twoProm = () => new Promise( res => {
-//     setTimeout(() => {
-//         console.log('twoProm');
-//         res()
-//     },2000);
-// });
-
-// const threeProm = () => new Promise( res => {
-//     setTimeout(() => {
-//         console.log('threeProm');
-//         res()
-//     },3000);
-// });
+// revReg(str);
 
 
-// startProm()
-//     .then( () => oneProm().then( () => twoProm().then( () => threeProm().then( () => console.log('END')))));
+//_____________#2___________
 
 
-//________________exercise3__________________
+// let arr = [1, 2, 3, 2, 'fga', 'eEe', 'eee', 'RRR', 'rrr', true, true, 1];
 
+// function removeDuplicates(arr) {
+//     const arr1 = [];
+//     const newArr = [];
 
-// const arrProm = [];
-
-// for (let i = 0; i < 4; i++) {
-//     let sec = Math.floor(Math.random() * 11);
-//     sec = sec * 1000
-//     const thePromOne = new Promise( res => {
-//         setTimeout(() => {
-//             console.log(`thePromOne ${i}`);
-//             res()
-//         },sec);
+//     arr.map( item => {
+//         if ( typeof item === "string" ) {
+//         arr1.push(item.toLowerCase());
+//         } else arr1.push(item);
 //     });
 
-//     const thePromoneTwo = new Promise( res => {
-//         setTimeout(() => {
-//             console.log(`thePromoneTwo ${i}`);
-//             res()
-//         },sec);
+//     arr1.forEach( item => {
+//         if (!(newArr.indexOf(item) != -1)) {
+//             newArr.push(item);
+//         };
 //     });
 
-//     arrProm.push(thePromOne,thePromoneTwo);
+//     console.log(newArr);
 
 // };
 
-//  Promise.all(arrProm)
-//  .then( () => console.log('complete Promise all'));
+// removeDuplicates(arr);
 
-// Promise.race(arrProm)
-// .then( () => console.log('complete Promise race'));
+
+//_____________#3___________
+
+
+// const arr1 = [1, 2, 3, 4, 5];
+// const arr2 = [4, 5, 6];
+
+// const arr3 = arr1.map( (item, idx) => {
+//     if (idx > arr2.length -1) {
+//         return item;
+//     } else {
+//         return item + arr2[idx];
+//     };
+// });
+
+// console.log(arr3);
+
+
+//_____________#4___________
+
+
+// let arr = [1, 2, 3, 2, 'fga', 'eee', 'eEe', true, true, 1, 1, 'DDD', 'ddd', 1, 1, 1];
+
+// function countIdentic(arr) {
+//     const arr1 = [];
+//     let counter = 0;
+    
+//     arr.map( item => {
+//         if ( typeof item === "string" ) {
+//         arr1.push(item.toLowerCase());
+//         } else arr1.push(item);
+//     });
+
+
+
+//     const newArr = arr1.reduce( (acc, item) => {
+//         if (acc.includes(item)) {
+//             counter++;
+//             return acc;
+//         } else {
+//             return [...acc, item];
+//         };
+//     }, []);
+
+//     // Второй способ через фильтр 
+
+//     // const newArr = arr1.filter((item ,idx) => {
+//     //     if (arr1.indexOf(item) === idx) {
+//     //         return arr.indexOf(item) === idx
+//     //     } else counter++;
+//     // });
+
+//     console.log(counter);
+
+// };
+
+// countIdentic(arr);
+
+
+//_____________#5___________
+
+
+// let arr1 = [1, 2, 3, 2, 'fga', 'eee', 'eEe', 'RRR', 'rrr', true, true, 1];
+// let arr2 = [false, undefined, 0, 4, 'eEe'];
+
+// function union(var1, var2) {
+//     const arrVrem = var1.concat(var2);
+//     let unique = [];
+//     let yes = 0;
+//     const arrAll = [];
+
+//     arrVrem.map( item => {
+//         if ( typeof item === "string" ) {
+//         arrAll.push(item.toLowerCase());
+//         } else arrAll.push(item);
+//     });
+
+//     arrAll.forEach( item => {
+
+//         arrAll.forEach(element => {
+//             if (item === element) {
+//                 yes++;
+//             };
+//         });
+
+//         if (yes === 1) {
+//             unique.push(item);
+//         };
+//         yes = 0;
+//     });
+
+//     console.log(unique);
+// };
+
+// union(arr1, arr2);
+
+
+//_____________#6___________
+//________Попытка сделать то что было в чате __________
+
+
+// let promtarr = prompt('enter...');
+
+// let a = 'abcd';
+
+// function arrString(var1) {
+//     let arr = var1.split('');
+//     const arr2 = [];
+//     for (let j = 0; j < arr.length; j++) {
+//         let element = arr;
+        
+//         for (let i = 0; i < element.length; i++) {
+//             if (i !== element.length - 1) {
+//             let tmp = element[i];
+//             element[i] = element[i + 1];
+//             element[i + 1] = tmp;
+//             console.log(element);
+//             arr2.push(element.join(''));
+//             }
+//         }
+
+//     }
+//     console.log(arr2);
+
+// }
+
+// arrString(a);
+
