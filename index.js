@@ -1,189 +1,195 @@
-//_____________#1___________
+
+class Human {
+
+  #name;
+  #surname;
+  #age;
+  
+  get name () {
+    return this.#name;
+  }
+
+  get surname() {
+    return this.#surname;
+  }
+
+  get age() {
+    return this.#age;
+  }
+
+  set name(newName) { 
+    typeof newName === 'string' ? this.#name = newName : alert('Invalid data type entered');
+  }
+
+  set surname(newSurname) { 
+    typeof newSurname === 'string' ? this.#surname = newSurname : alert('Invalid data type entered');
+  }
+
+  set age(newAge) { 
+    typeof newAge === 'number' ? this.#age = newAge : alert('Invalid data type entered');
+  }
 
 
-// const str = 'КaКаЖдЫй ОхОтНиК';
+  constructor (name, surname, age) {
+    this.#name = name;
+    this.#surname = surname;
+    this.#age = age;
+  }
 
-// function revReg(var1) {
-//     const arr = var1.split(' ');
-//     const finishArr = [];
+  fullName () {
+    return `${this.name} ${this.surname}`;
+  }
 
-//     arr.map( item => {
-//         const arrInterim = item.split('');
-//         const arrRam = [];
+};
 
-//         arrInterim.map( item => {
-//             if (item === item.toUpperCase()) {
-//                 item = item.toLowerCase();
-//                 arrRam.push(item);
-//             } else {
-//                 item = item.toUpperCase();
-//                 arrRam.push(item);
-//             };
-//         });
+class Worker extends Human {
 
-//         item = arrRam.join('');
-//         finishArr.push(item);
-//     })
+  #rate;
+  #days;
 
-//     console.log(finishArr);
+  get rate() {
+    return this.#rate;
+  }
+
+  get days() {
+    return this.#days;
+  }
+
+  set rate(newRate) { 
+    typeof newRate === 'number' ? this.#rate = newRate : alert('Invalid data type entered');
+  }
+
+  set days(newDays) { 
+    typeof newDays === 'number' ? this.#days = newDays : alert('Invalid data type entered');
+  }
+
+  constructor (name, surname, age, rate, days,){
+    super (name, surname, age);
+    this.#rate = rate;
+    this.#days = days;
+  }
+
+  salary () {
+    return this.#rate * this.#days ;
+  }
+
+};
+
+class Developer extends Worker{
+
+  #sphere;
+  #company;
+
+  get sphere() {
+    return this.#sphere;
+  }
+
+  get company() {
+    return this.#company;
+  }
+
+  set sphere(newSphere) { 
+    typeof newSphere === 'string' ? this.#sphere = newSphere : alert('Invalid data type entered');
+  }
+
+  set company(newCompany) { 
+    typeof newCompany === 'string' ? this.#company = newCompany : alert('Invalid data type entered');
+  }
+
+
+  constructor (sphere, company, name, surname, age, rate, days) {
+    super(name, surname, age, rate, days);
+    this.#sphere = sphere;
+    this.#company = company;
+  }
+
+  salary () {
+    // return `${super.salary()} $`;
+    return this.days * this.rate + ' $';
+  }
+
+};
+
+class Designer extends Developer{
+
+  #platform;
+  #environment;
+
+  get platform() {
+    return this.#platform;
+  }
+
+  get environment() {
+    return this.#environment;
+  }
+
+  set platform(newPlatform) { 
+    typeof newPlatform === 'string' ? this.#platform = newPlatform : alert('Invalid data type entered');
+  }
+
+  set environment(newEnvironment) { 
+    typeof newEnvironment === 'string' ? this.#environment = newEnvironment : alert('Invalid data type entered');
+  }
+
+  constructor ( name, surname, age, sphere, company, platform, environment, rate, days) {
+    super(sphere, company, name, surname, age, rate, days);
+    this.#platform = platform;
+    this.#environment = environment;
+  }
+
+};
+
+const nameValue = document.getElementById('name');
+const surnameValue = document.getElementById('surname');
+const ageValue = document.getElementById('age');
+const sphereValue = document.getElementById('sphere');
+const companyValue = document.getElementById('company');
+const platformValue = document.getElementById('platform');
+const environmentValue = document.getElementById('environment');
+const rateValue = document.getElementById('rate');
+const daysValue = document.getElementById('days');
+const btnForm = document.getElementById('btnForm');
+const clearList = document.getElementById('clearList');
+const myForm = document.getElementById('myForm');
+const ul = document.getElementById('ul');
+const users = [];
+
+btnForm.onclick = () => {
+  if (nameValue.value !== '' &&
+  surnameValue.value !== '' && 
+  ageValue.value !== '' && 
+  sphereValue.value !== '' &&
+  companyValue.value !== '' &&
+  platformValue.value !== '' && 
+  environmentValue.value !== '' && 
+  rateValue.value !== '' && 
+  daysValue.value !== '' ) {
+
+    const user = new Designer (nameValue.value, 
+      surnameValue.value, 
+      ageValue.value,
+      sphereValue.value, 
+      companyValue.value, 
+      platformValue.value, 
+      environmentValue.value, 
+      rateValue.value, 
+      daysValue.value);
     
-// };
+    users.push(user);
+    console.log(user);
+    console.log(users);
+    myForm.reset();
+  
+    const li = document.createElement('li');
+    li.innerHTML = `${user.fullName()} - ${user.salary()}`
+    ul.appendChild(li);
 
-// revReg(str);
+  } else alert('fill the form');
 
+};
 
-//_____________#2___________
-
-
-// let arr = [1, 2, 3, 2, 'fga', 'eEe', 'eee', 'RRR', 'rrr', true, true, 1];
-
-// function removeDuplicates(arr) {
-//     const arr1 = [];
-//     const newArr = [];
-
-//     arr.map( item => {
-//         if ( typeof item === "string" ) {
-//         arr1.push(item.toLowerCase());
-//         } else arr1.push(item);
-//     });
-
-//     arr1.forEach( item => {
-//         if (!(newArr.indexOf(item) != -1)) {
-//             newArr.push(item);
-//         };
-//     });
-
-//     console.log(newArr);
-
-// };
-
-// removeDuplicates(arr);
-
-
-//_____________#3___________
-
-
-// const arr1 = [1, 2, 3, 4, 5];
-// const arr2 = [4, 5, 6];
-
-// const arr3 = arr1.map( (item, idx) => {
-//     if (idx > arr2.length -1) {
-//         return item;
-//     } else {
-//         return item + arr2[idx];
-//     };
-// });
-
-// console.log(arr3);
-
-
-//_____________#4___________
-
-
-// let arr = [1, 2, 3, 2, 'fga', 'eee', 'eEe', true, true, 1, 1, 'DDD', 'ddd', 1, 1, 1];
-
-// function countIdentic(arr) {
-//     const arr1 = [];
-//     let counter = 0;
-    
-//     arr.map( item => {
-//         if ( typeof item === "string" ) {
-//         arr1.push(item.toLowerCase());
-//         } else arr1.push(item);
-//     });
-
-
-
-//     const newArr = arr1.reduce( (acc, item) => {
-//         if (acc.includes(item)) {
-//             counter++;
-//             return acc;
-//         } else {
-//             return [...acc, item];
-//         };
-//     }, []);
-
-//     // Второй способ через фильтр 
-
-//     // const newArr = arr1.filter((item ,idx) => {
-//     //     if (arr1.indexOf(item) === idx) {
-//     //         return arr.indexOf(item) === idx
-//     //     } else counter++;
-//     // });
-
-//     console.log(counter);
-
-// };
-
-// countIdentic(arr);
-
-
-//_____________#5___________
-
-
-// let arr1 = [1, 2, 3, 2, 'fga', 'eee', 'eEe', 'RRR', 'rrr', true, true, 1];
-// let arr2 = [false, undefined, 0, 4, 'eEe'];
-
-// function union(var1, var2) {
-//     const arrVrem = var1.concat(var2);
-//     let unique = [];
-//     let yes = 0;
-//     const arrAll = [];
-
-//     arrVrem.map( item => {
-//         if ( typeof item === "string" ) {
-//         arrAll.push(item.toLowerCase());
-//         } else arrAll.push(item);
-//     });
-
-//     arrAll.forEach( item => {
-
-//         arrAll.forEach(element => {
-//             if (item === element) {
-//                 yes++;
-//             };
-//         });
-
-//         if (yes === 1) {
-//             unique.push(item);
-//         };
-//         yes = 0;
-//     });
-
-//     console.log(unique);
-// };
-
-// union(arr1, arr2);
-
-
-//_____________#6___________
-//________Попытка сделать то что было в чате __________
-
-
-// let promtarr = prompt('enter...');
-
-// let a = 'abcd';
-
-// function arrString(var1) {
-//     let arr = var1.split('');
-//     const arr2 = [];
-//     for (let j = 0; j < arr.length; j++) {
-//         let element = arr;
-        
-//         for (let i = 0; i < element.length; i++) {
-//             if (i !== element.length - 1) {
-//             let tmp = element[i];
-//             element[i] = element[i + 1];
-//             element[i + 1] = tmp;
-//             console.log(element);
-//             arr2.push(element.join(''));
-//             }
-//         }
-
-//     }
-//     console.log(arr2);
-
-// }
-
-// arrString(a);
-
+clearList.onclick = () => {
+  while (ul.firstChild) {
+    ul.removeChild(ul.firstChild);
+}
+}
