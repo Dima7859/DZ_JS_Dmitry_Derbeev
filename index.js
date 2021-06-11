@@ -1,195 +1,139 @@
+// const user = {
+//   firstName: 'Alex',
+//   lastName: 'Petrov',
+//   age: 25,
+//   job: {
+//     company: 'iTcehArt',
+//     position:'webDev',
+//     skills: ['JS', 'HTML', 'CSS']
+//   }
+// }
 
-class Human {
+// user.fullName = `${user.firstName} ${user.lastName}`;
+// const { fullName: name = 'noname' } = user;
+// const { job: {company: myCompany  = 'EPAM'} } = user;
 
-  #name;
-  #surname;
-  #age;
-  
-  get name () {
-    return this.#name;
-  }
-
-  get surname() {
-    return this.#surname;
-  }
-
-  get age() {
-    return this.#age;
-  }
-
-  set name(newName) { 
-    typeof newName === 'string' ? this.#name = newName : alert('Invalid data type entered');
-  }
-
-  set surname(newSurname) { 
-    typeof newSurname === 'string' ? this.#surname = newSurname : alert('Invalid data type entered');
-  }
-
-  set age(newAge) { 
-    typeof newAge === 'number' ? this.#age = newAge : alert('Invalid data type entered');
-  }
+// console.log(name);
+// console.log(myCompany);
 
 
-  constructor (name, surname, age) {
-    this.#name = name;
-    this.#surname = surname;
-    this.#age = age;
-  }
-
-  fullName () {
-    return `${this.name} ${this.surname}`;
-  }
-
+const API_CONFIG = {
+  apiKey: "AIzaSyCLFgiL1GTYAXSUxEIHWj2Sma7eKcizwNM",
+  authDomain: "dimade7859-test.firebaseapp.com",
+  databaseURL: "https://dimade7859-test-default-rtdb.firebaseio.com",
+  projectId: "dimade7859-test",
+  storageBucket: "dimade7859-test.appspot.com",
+  messagingSenderId: "709834733024",
+  appId: "1:709834733024:web:d8e4c5576ef153251ae785",
+  measurementId: "G-48QGH55PZC"
 };
 
-class Worker extends Human {
+const dataBaceUrl = 'https://dimade7859-test-default-rtdb.firebaseio.com/';
 
-  #rate;
-  #days;
+class User {
 
-  get rate() {
-    return this.#rate;
+  constructor ( name, surname, age, sphere, company ) {
+    this.name = name;
+    this.surname = surname;
+    this.age = age;
+    this.sphere = sphere;
+    this.company = company;
   }
 
-  get days() {
-    return this.#days;
-  }
-
-  set rate(newRate) { 
-    typeof newRate === 'number' ? this.#rate = newRate : alert('Invalid data type entered');
-  }
-
-  set days(newDays) { 
-    typeof newDays === 'number' ? this.#days = newDays : alert('Invalid data type entered');
-  }
-
-  constructor (name, surname, age, rate, days,){
-    super (name, surname, age);
-    this.#rate = rate;
-    this.#days = days;
-  }
-
-  salary () {
-    return this.#rate * this.#days ;
-  }
-
-};
-
-class Developer extends Worker{
-
-  #sphere;
-  #company;
-
-  get sphere() {
-    return this.#sphere;
-  }
-
-  get company() {
-    return this.#company;
-  }
-
-  set sphere(newSphere) { 
-    typeof newSphere === 'string' ? this.#sphere = newSphere : alert('Invalid data type entered');
-  }
-
-  set company(newCompany) { 
-    typeof newCompany === 'string' ? this.#company = newCompany : alert('Invalid data type entered');
-  }
-
-
-  constructor (sphere, company, name, surname, age, rate, days) {
-    super(name, surname, age, rate, days);
-    this.#sphere = sphere;
-    this.#company = company;
-  }
-
-  salary () {
-    // return `${super.salary()} $`;
-    return this.days * this.rate + ' $';
-  }
-
-};
-
-class Designer extends Developer{
-
-  #platform;
-  #environment;
-
-  get platform() {
-    return this.#platform;
-  }
-
-  get environment() {
-    return this.#environment;
-  }
-
-  set platform(newPlatform) { 
-    typeof newPlatform === 'string' ? this.#platform = newPlatform : alert('Invalid data type entered');
-  }
-
-  set environment(newEnvironment) { 
-    typeof newEnvironment === 'string' ? this.#environment = newEnvironment : alert('Invalid data type entered');
-  }
-
-  constructor ( name, surname, age, sphere, company, platform, environment, rate, days) {
-    super(sphere, company, name, surname, age, rate, days);
-    this.#platform = platform;
-    this.#environment = environment;
-  }
-
-};
+}
 
 const nameValue = document.getElementById('name');
 const surnameValue = document.getElementById('surname');
 const ageValue = document.getElementById('age');
 const sphereValue = document.getElementById('sphere');
 const companyValue = document.getElementById('company');
-const platformValue = document.getElementById('platform');
-const environmentValue = document.getElementById('environment');
-const rateValue = document.getElementById('rate');
-const daysValue = document.getElementById('days');
 const btnForm = document.getElementById('btnForm');
 const clearList = document.getElementById('clearList');
+const btnRefresh = document.getElementById('btnRefresh');
 const myForm = document.getElementById('myForm');
 const ul = document.getElementById('ul');
-const users = [];
+
+const createeUser = ({ name, surname, age, sphere, company }) => {
+  fetch(`${dataBaceUrl}/users.json`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type' : 'application/json'
+      },
+      body: JSON.stringify({
+        name,
+        surname,
+        age,
+        sphere,
+        company
+      })
+    }
+  )
+    .then( response => response.json())
+    .then( result => console.log(result));
+}
+
+const getUsers = () => {
+  fetch(
+    `${dataBaceUrl}/users.json`,{
+      method: 'GET',
+      headers: {
+        'Content-Type' : 'application/json'
+      }
+    }
+  )
+    .then( response => response.json())
+    .then( result => {
+      const transformedUserArr = Object.keys(result).map( key => ({
+        ...result[key],
+        id: key
+      }));
+      console.log(transformedUserArr);
+      ul.innerHTML = '';
+      transformedUserArr.forEach( item => {
+        const li = document.createElement('li');
+        li.innerHTML = 
+          `Name - ${item.name},
+          Surname - ${item.surname},
+          Age - ${item.age},
+          Sphere - ${item.sphere},
+          Company - ${item.company}`;
+        ul.appendChild(li);
+      });
+    });
+}
+
 
 btnForm.onclick = () => {
-  if (nameValue.value !== '' &&
-  surnameValue.value !== '' && 
-  ageValue.value !== '' && 
-  sphereValue.value !== '' &&
-  companyValue.value !== '' &&
-  platformValue.value !== '' && 
-  environmentValue.value !== '' && 
-  rateValue.value !== '' && 
-  daysValue.value !== '' ) {
+  if (
+    nameValue.value !== '' &&
+    surnameValue.value !== '' &&
+    ageValue.value !== '' &&
+    sphereValue.value !== '' &&
+    companyValue.value !== ''
+  ) {
 
-    const user = new Designer (nameValue.value, 
-      surnameValue.value, 
+    const user = new User (
+      nameValue.value,
+      surnameValue.value,
       ageValue.value,
-      sphereValue.value, 
-      companyValue.value, 
-      platformValue.value, 
-      environmentValue.value, 
-      rateValue.value, 
-      daysValue.value);
+      sphereValue.value,
+      companyValue.value,
+    );
     
-    users.push(user);
     console.log(user);
-    console.log(users);
+    createeUser (user);
+    getUsers();
     myForm.reset();
-  
-    const li = document.createElement('li');
-    li.innerHTML = `${user.fullName()} - ${user.salary()}`
-    ul.appendChild(li);
 
   } else alert('fill the form');
 
 };
 
+btnRefresh.onclick = getUsers;
+
 clearList.onclick = () => {
-  while (ul.firstChild) {
-    ul.removeChild(ul.firstChild);
-}
-}
+  ul.innerHTML = '';
+};
+
+getUsers();
