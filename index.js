@@ -71,7 +71,7 @@ const createeUser = ({ name, surname, age, sphere, company }) => {
   )
     .then( response => response.json())
     .then( result => console.log(result));
-}
+};
 
 const getUsers = () => {
   fetch(
@@ -101,7 +101,7 @@ const getUsers = () => {
         ul.appendChild(li);
       });
     });
-}
+};
 
 
 btnForm.onclick = () => {
