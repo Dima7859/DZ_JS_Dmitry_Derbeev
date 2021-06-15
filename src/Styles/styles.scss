@@ -1,0 +1,83 @@
+.allBlock {
+  margin: 20px;
+  width: 400px;
+}
+
+.divBlock {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  border-radius: 10px;
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+
+.form-control {
+  border-radius: 10px;
+}
+
+.post {
+  border-radius: 10px;
+  width: 600px;
+  height: 160px;
+}
+
+.allBtn {
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn {
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  border: 2px solid;
+  border-radius: 10px;
+  background-color: #bce3e3;
+  width: 100px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.btn:active {
+  background-color: #005288;
+}
+
+h1 {
+  text-align: center;
+}
+
+#all_Block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.all_Block_Note {
+  min-width: 405px;
+  margin: 10px 0;
+  border: 1px solid;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  min-height: 100px;
+
+  &_Header {
+    font-size: 20px;
+    margin: 10px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &_Content {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+}
