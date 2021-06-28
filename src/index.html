@@ -2,12 +2,21 @@
   <head>
     <title>Document</title>
   </head>
-  <body>
-    <div class="header">
-      <h1>Main Page</h1>
-      <div class="header__profile">
-        <button id="logoutBtn" class="btn btn-light">Logout</button>
+  <body class="blackBackground">
+    <div class="mainPage">
+      <div class="mainPage__header">
+        <div class="mainPage__header__welcome">
+          <div class="mainPage__header__welcome__h1"></div>
+        </div>
+        <div class="mainPage__header__profile">
+          <button id="logoutBtn" >Logout</button>
+        </div>
       </div>
+      <div class="mainPage__content">
+      </div>
+    </div>
+    <div id="btnMusic" class="music">
+      <audio id="musicMp3" src="./other/music/01 Bad to the Bone.mp3" autoplay='autoplay' loop="loop" type="audio/mp3"></audio>
     </div>
   </body>
 </html>

@@ -16,12 +16,10 @@ export const signUpHendler = () => {
     createdUser(name, email, password, birth)
       .then( response => {
         if (response) {
-          console.log(response.user.email);
           const { email } = response.user;
           setUserEmail(email);
           signIn(email, password)
             .then( response => {
-              // console.log(response);
               if (response) {
                 const { idToken: token } = response.data;
                 setToken(token);
@@ -30,15 +28,5 @@ export const signUpHendler = () => {
             });
         };
       });
-
-    // signUp(email, password)
-    //   .then( response => {
-    //     if (response) {
-    //       console.log(response.user.email);
-    //       const { email } = response.user;
-    //       setUserEmail(email);
-    //     };
-    //   });
-
   });
 };

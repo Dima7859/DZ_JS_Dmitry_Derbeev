@@ -1,0 +1,65 @@
+.blackBackground {
+  background-color: #000;
+}
+
+.mainPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mainPage__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__welcome__h1 {
+    color: #fe8201;
+    font-size: 52px;
+    margin-bottom: 20px;
+  }
+
+  #logoutBtn {
+    width: 310px;
+    height: 60px;
+    font-size: 40px;
+    font-weight: bold;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    background-color: #fe8201;
+  }
+
+  #logoutBtn:active {
+    background-color: #d30000;
+  }
+
+}
+
+.mainPage__content {
+  background: url(../../other/img/RnRr.gif) no-repeat;
+  background-size: 600px;
+  width: 600px;
+  height: 525px;
+}
+
+.music {
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  left: 15px;
+  background: url(../../other/img/stop.png) no-repeat;
+  background-size: 40px;
+  width: 40px;
+  height: 40px;
+}
+
+.musicPlay {
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  left: 15px;
+  background: url(../../other/img/start.png) no-repeat;
+  background-size: 40px;
+  width: 40px;
+  height: 40px;
+}

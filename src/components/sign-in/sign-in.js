@@ -1,5 +1,5 @@
 import { signIn } from "../../api/api-handlers";
-import { setToken } from "../../shared/ls-service";
+import { setToken, setUserEmail } from "../../shared/ls-service";
 import { routes } from "../../shared/constants/routes";
 
 export const signInHandler = () => {
@@ -14,6 +14,7 @@ export const signInHandler = () => {
         if (response) {
           const { idToken: token } = response.data;
           setToken(token);
+          setUserEmail(email);
           window.location.href = routes.home;
         }
       });

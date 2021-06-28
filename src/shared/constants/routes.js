@@ -1,4 +1,3 @@
-
 export const routes = {
   home: '/',
   sign_in: 'sign-in.html',
@@ -10,5 +9,3 @@ export const paths = {
   sign_in: '/sign-in.html',
   sign_up: '/sign-up.html'
 };
-
-
