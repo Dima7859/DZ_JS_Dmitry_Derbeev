@@ -1,13 +1,12 @@
-import { signIn, createdUser } from "../../api/api-handlers";
-import { setToken, setUserEmail, setUserName } from "../../shared/ls-service";
-import { routes } from "../../shared/constants/routes";
+import { signIn, createdUser } from '../../api/api-handlers';
+import { setToken, setUserEmail } from '../../shared/ls-service';
+import { routes } from '../../shared/constants/routes';
 
 export const signUpHendler = () => {
-  const signUpForm = document.querySelector('.sing-up__form');
+  const signUpForm = document.querySelector('.sign-up__form');
 
   signUpForm.addEventListener('submit', event => {
     event.preventDefault();
-
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const birth = document.getElementById('birth').value;
@@ -24,7 +23,7 @@ export const signUpHendler = () => {
                 const { idToken: token } = response.data;
                 setToken(token);
                 window.location.href = routes.home;
-              }
+              };
             });
         };
       });

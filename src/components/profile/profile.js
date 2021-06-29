@@ -1,5 +1,5 @@
-import { removeToken, removeUserEmail, removeUserName, getUserName } from "../../shared/ls-service";
-import { routes } from "../../shared/constants/routes";
+import { removeToken, removeUserEmail, removeUserName, getUserName } from '../../shared/ls-service';
+import { routes } from '../../shared/constants/routes';
 
 export const logoutBtnHandler = () => {
   const logoutBtn = document.getElementById('logoutBtn');
@@ -16,10 +16,8 @@ export const welcomeUser = () => {
   const h1 = document.createElement('h1');
 
   h1.className = 'mainPage__header__welcome__h1';
-
-  h1.innerHTML = `Welcome to the club ${getUserName()} !!!`
+  h1.innerHTML = `Welcome to the club ${getUserName()} !!!`;
   divHederMainPage.appendChild(h1);
-
 };
 
 export const musicPlSt = () => {
@@ -36,6 +34,6 @@ export const musicPlSt = () => {
       musicMp3.play();
       nowMusic = true;
       playAndStop.className = 'music';
-    }
-  }
+    };
+  };
 };

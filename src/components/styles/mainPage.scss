@@ -19,7 +19,7 @@
     margin-bottom: 20px;
   }
 
-  #logoutBtn {
+  &__profile__btn {
     width: 310px;
     height: 60px;
     font-size: 40px;
@@ -29,14 +29,14 @@
     background-color: #fe8201;
   }
 
-  #logoutBtn:active {
+  &__profile__btn:active {
     background-color: #d30000;
   }
 
 }
 
 .mainPage__content {
-  background: url(../../other/img/RnRr.gif) no-repeat;
+  background: url('../../other/img/RnRr.gif') no-repeat;
   background-size: 600px;
   width: 600px;
   height: 525px;
@@ -47,7 +47,7 @@
   position: fixed;
   top: 20px;
   left: 15px;
-  background: url(../../other/img/stop.png) no-repeat;
+  background: url('../../other/img/stop.png') no-repeat;
   background-size: 40px;
   width: 40px;
   height: 40px;
@@ -58,7 +58,7 @@
   position: fixed;
   top: 20px;
   left: 15px;
-  background: url(../../other/img/start.png) no-repeat;
+  background: url('../../other/img/start.png') no-repeat;
   background-size: 40px;
   width: 40px;
   height: 40px;

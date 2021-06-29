@@ -14,8 +14,7 @@ export const signIn = (email, password) => {
     password,
     returnSecureToken: true
   })
-    .then( response => response)
-    .catch( err => console.log(err));
+    .then( response => response);
 };
 
 export const createdUser = async (name, email, password, birth) => {
@@ -24,9 +23,8 @@ export const createdUser = async (name, email, password, birth) => {
     email,
     birth,
   })
-    .then( response => console.log(response))
-    .catch( err => console.log(err));
-  
+    .then( response => console.log(response));
+
   return await fierbase
     .auth()
     .createUserWithEmailAndPassword(email, password)
@@ -35,8 +33,7 @@ export const createdUser = async (name, email, password, birth) => {
 
 export const getUsers = async () => {
   return axios.get(`${dataBaceUrl}/users.json`)
-    .then( response => response)
-    .catch( err => console.log(err));
+    .then( response => response);
 };
 
 initApi();

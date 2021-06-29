@@ -1,7 +1,7 @@
 import './components/styles/style.scss';
 import { paths, routes } from './shared/constants/routes';
 import { signInHandler } from './components/sign-in/sign-in';
-import { getToken, getUserEmail, setUserName, getUserName } from './shared/ls-service';
+import { getToken, getUserEmail, setUserName } from './shared/ls-service';
 import { logoutBtnHandler, musicPlSt, welcomeUser } from './components/profile/profile';
 import { signUpHendler } from './components/sign-up/sign-up';
 import { getUsers } from './api/api-handlers';
@@ -12,7 +12,6 @@ window.onload = () => {
 
   switch (pathname) {
     case paths.home:
-
       const token = getToken();
 
       if (!token) {
@@ -20,7 +19,6 @@ window.onload = () => {
       } else {
         getUsers()
           .then(result => {
-
             const transformedUserArr = Object.keys(result.data).map( key => ({
               ...result.data[key],
               key: key
@@ -43,9 +41,9 @@ window.onload = () => {
       signInHandler();
       break;
     case paths.sign_up:
-      signUpHendler ()
+      signUpHendler();
       break;
     default:
       break;
-  }
-}
+  };
+};

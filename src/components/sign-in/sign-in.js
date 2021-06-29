@@ -1,6 +1,6 @@
-import { signIn } from "../../api/api-handlers";
-import { setToken, setUserEmail } from "../../shared/ls-service";
-import { routes } from "../../shared/constants/routes";
+import { signIn } from '../../api/api-handlers';
+import { setToken, setUserEmail } from '../../shared/ls-service';
+import { routes } from '../../shared/constants/routes';
 
 export const signInHandler = () => {
   const signInForm = document.querySelector('.sing-in__form');
@@ -16,7 +16,7 @@ export const signInHandler = () => {
           setToken(token);
           setUserEmail(email);
           window.location.href = routes.home;
-        }
+        };
       });
   });
 };
